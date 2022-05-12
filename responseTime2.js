@@ -3,25 +3,25 @@ const express = require('express')
 const app = express()
 
 app.use((req, res, next) => {
+    console.log(-1)
     next()
     console.log(3)
-    let time = Date.now() - app.locals.responseTime
-    console.log(time)
 })
 
 app.use((req, res, next) => {
-    app.locals.responseTime = Date.now()
+    let startTime = Date.now()
+    console.log(0)
     next()
+    let time = Date.now() - startTime
+    console.log('响应时间 => ' + time)
     console.log(2)
 })
 
 app.use((req, res, next) => {
     for(let i=0; i<100000; i++) {
-        console.log(123456)
+        res.write('123456')
     }
-    let time = Date.now() - app.locals.responseTime
-    console.log('响应时间 => ' + time)
-    res.send('响应完成')
+    res.end()
     console.log(1)
 })
 
