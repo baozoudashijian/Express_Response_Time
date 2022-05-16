@@ -8,7 +8,19 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use(responseTime())
+// 传递参数第一种方式
+// app.use(responseTime())
+
+// 传递参数第二种方式
+// app.use(responseTime(1))
+
+// 传递参数第三种方式
+// app.use(responseTime({digits: 2, suffix: false}))
+
+// 传递参数第四种方式
+app.use(responseTime((req, res, time) => {
+  res.setHeader('X-Zrj-Time', time)
+}))
 
 app.use((req, res, next) => {
   for(let i=0; i<100000; i++) {
