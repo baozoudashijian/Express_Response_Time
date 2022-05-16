@@ -6,11 +6,15 @@
   "author": "Roger Zhang <1787009521@qq.com>",
   "license": "MIT",
   "dependencies": {
+    "depd": "^2.0.0",
     "express": "^4.18.1",
-    "node-dev": "^7.4.3"
+    "node-dev": "^7.4.3",
+    "on-headers": "^1.0.2"
   },
   "scripts": {
     "start": "./node_modules/.bin/node-dev responseTime.js",
-    "start2": "./node_modules/.bin/node-dev responseTime2.js"
+    "start2": "./node_modules/.bin/node-dev responseTime2.js",
+    "start3": "./node_modules/.bin/node-dev responseTimeTj.js",
+    "start4": "./node_modules/.bin/node-dev ./middleware/index.js"
   }
 }
