@@ -13,7 +13,17 @@ function responseTime(options) {
   }
 
   let fn = typeof opts !== 'function' ? createSetHeader(opts) : opts
-  console.log(opts);
+
+  return function responseTime(req, res, next) {
+    let startAt = process.hrtime()
+
+    onHeaders(res, function() {
+      let diff = process.hrtime(startAt)
+      let time = diff[0] * 1e3 + diff[1] * 1e-6
+
+      fn(req, res, time)
+    })
+  }
 }
 
 function createSetHeader(options) {
